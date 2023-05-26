@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *   {
+            border: 2px solid black;
+        }
+        body    {
+            background-color: blue;
+        }
+
+        .wrapper    {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .bank_Sidebar   {
+            background-color: brown;
+            position: absolute;
+            height: 40%;
+            width: 20%;
+            right: 0;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;   
+            gap: 16px;
+        }
+
+        #dorito_Clicker {
+            width: 30%;
+
+        }
+
+        #clicker_Counter    {
+            text-align: center;
+            
+        }
+
+        .shop_Sidebar   {
+            background-color: brown;
+            position: absolute;
+            min-height: 340px;
+            height: auto;
+            width: 20%;
+            left: 0;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;   
+            gap: 16px;
+        }
+        
+        .shop_Perks {
+            padding: 20px;
+            display: grid;
+            gap: 20px 50px;
+            
+        }
+        
+        .upgrade_Click_lvl  {
+            background-color: aqua;
+            height: 60px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 1px 3px black;
+            
+        }
+
+        .click_lvl_price    {
+            background-color: grey;
+            text-align: center;
+            width: 50%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .heading    {
+            text-align: center;
+            font-size: 5vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #lvl    {
+            color: white;
+            font-size: 4vw;
+            position: absolute;
+            left: 0;
+            top: 0; 
+        }
+
+        #money_Dollars  {
+            font-size: 4vw;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="bank_Sidebar">
+            <p id="lvl">1</p>
+            <div class="bank_Money">
+                <p id="money_Dollars"></p>
+                <p id="money_Gems"></p>
+                <p id="money_Gold"></p>
+            </div>
+        </div>
+        <div class="shop_Sidebar">
+            <div class="shop_Perks">
+                <div id="upgrade_click_lvl1" class="upgrade_Click_lvl">
+                    <p>Upgrade click level</p>
+                    <p class="click_lvl_price">Price</p>
+                </div>
+                <div id="upgrade_Click_lvl2" class="upgrade_Click_lvl">
+                    <p>Upgrade click level</p>
+                    <p class="click_lvl_price">Price</p>
+                </div>
+                <div class="upgrade_Click_lvl">
+                    <p>Upgrade click level</p>
+                    <p class="click_lvl_price">Price</p>
+                </div>
+                <div class="upgrade_Click_lvl">
+                    <p>Upgrade click level</p>
+                    <p class="click_lvl_price">Price</p>
+                </div>
+                <div class="upgrade_Click_lvl">
+                    <p>Upgrade click level</p>
+                    <p class="click_lvl_price">Price</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="heading">Dorito Clicker</h2>
+        <h3 id="clicker_Counter"></h3>
+            <img src="dorito.png" draggable="false" alt="" srcset="" id="dorito_Clicker">
+    </div>
+
+<script>
+    let click_lvl = 1
+    let money_Dollars = 0
+    let upgrade_Price = 50 
+     
+    document.getElementById("dorito_Clicker").onclick = dorito_Money;
+    document.getElementById("upgrade_click_lvl1").onclick = upgrade_Click_lvl;
+    
+    function dorito_Money () {
+        money_Dollars = money_Dollars + click_lvl;
+        document.getElementById("money_Dollars").innerHTML = money_Dollars;
+        price_value();
+    }
+    
+    
+
+    function price_value() {
+        let clickLevelPrices = document.getElementsByClassName("click_lvl_price");
+        for (let i = 0; i < clickLevelPrices.length; i++) {
+            clickLevelPrices[i].innerHTML = upgrade_Price;
+        }
+    }
+    
+    function upgrade_Click_lvl () {
+     if  (money_Dollars >= upgrade_Price) {
+        money_Dollars -= upgrade_Price;
+        click_lvl++;
+        priceUp();
+     }
+     else {
+        alert("no")
+     }
+    }
+
+    function priceUp() {
+        upgrade_Price = click_lvl * 50 * (1.11^click_lvl);
+        document.getElementsByClassName("click_lvl_price").innerHTML = upgrade_Price;
+        document.getElementById("lvl").innerHTML = click_lvl;
+        document.getElementById("money_Dollars").innerHTML = money_Dollars;
+    }
+</script>
+
+</body>
+</html>
